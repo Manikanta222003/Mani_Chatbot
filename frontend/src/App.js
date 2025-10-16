@@ -58,9 +58,9 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/chat` {
+      const response = await axios.post(`${BACKEND_URL}/chat`, {
         question: userQuestion,
-      });
+    });
 
       const botAnswer = response.data.answer || "Hmm... I'll get back to you on that!";
       
