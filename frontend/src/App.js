@@ -10,7 +10,7 @@ function App() {
   const [isTyping, setIsTyping] = useState(false);
   const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
-
+  const BACKEND_URL = "https://mani-chatbot.onrender.com";
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -58,7 +58,7 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/chat", {
+      const response = await axios.post(`${BACKEND_URL}/chat` {
         question: userQuestion,
       });
 
