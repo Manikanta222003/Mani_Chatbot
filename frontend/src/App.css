@@ -478,56 +478,48 @@ body {
   transform: none;
 }
 
-/* ------------------ WHATSAPP BUTTON - SIDE EDGE POSITIONING ------------------ */
+/* ------------------ WHATSAPP BUTTON - RIGHT MIDDLE POSITIONING ------------------ */
 .whatsapp-contact {
   position: fixed;
   top: 50%;
-  right: 0;
+  right: 15px;
   transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
   background: #25d366;
   color: white;
-  padding: 12px 8px;
-  border-radius: 25px 0 0 25px;
+  padding: 12px 16px;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: -8px 0 32px rgba(37, 211, 102, 0.4);
+  font-size: 0.9rem;
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
   transition: all 0.3s ease;
   backdrop-filter: blur(20px);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-right: none;
   animation: whatsappPulse 3s infinite;
   z-index: 1000;
-  min-width: 60px;
-  min-height: 80px;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
+  min-width: 56px;
+  min-height: 56px;
 }
 
 .whatsapp-contact svg {
-  font-size: 24px;
+  font-size: 20px;
   flex-shrink: 0;
-  margin-bottom: 4px;
-  writing-mode: initial;
-  text-orientation: initial;
 }
 
 .whatsapp-text {
-  font-size: 0.8rem;
+  white-space: nowrap;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
 }
 
 .whatsapp-contact:hover {
   background: #128c7e;
-  transform: translateY(-50%) translateX(-5px);
-  box-shadow: -12px 0 48px rgba(37, 211, 102, 0.6);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 12px 48px rgba(37, 211, 102, 0.6);
   color: white;
   text-decoration: none;
 }
@@ -649,7 +641,6 @@ body {
   
   .chat-container {
     padding: 16px;
-    padding-right: 70px; /* Add space for WhatsApp button */
   }
   
   .chat-bubble {
@@ -681,19 +672,23 @@ body {
     font-size: 0.9rem;
   }
   
-  /* WhatsApp button stays on side edge for mobile */
+  /* WhatsApp button - Right middle position, icon only on mobile */
   .whatsapp-contact {
-    min-width: 50px;
-    min-height: 70px;
-    padding: 10px 6px;
+    right: 12px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    padding: 0;
+    min-width: 52px;
+    min-height: 52px;
   }
   
   .whatsapp-contact svg {
-    font-size: 20px;
+    font-size: 22px;
   }
   
   .whatsapp-text {
-    font-size: 0.7rem;
+    display: none;
   }
   
   .ai-badge {
@@ -711,7 +706,7 @@ body {
   }
   
   .chat-container {
-    padding-right: 65px; /* Adjust space for smaller WhatsApp button */
+    padding: 16px;
   }
   
   .chat-bubble {
@@ -735,51 +730,46 @@ body {
     font-size: 14px;
   }
   
-  /* Smaller WhatsApp button for small screens */
+  /* Smaller WhatsApp button positioned away from input */
   .whatsapp-contact {
-    min-width: 45px;
-    min-height: 60px;
-    padding: 8px 4px;
+    right: 10px;
+    top: 45%;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
   }
   
   .whatsapp-contact svg {
-    font-size: 18px;
-  }
-  
-  .whatsapp-text {
-    font-size: 0.65rem;
+    font-size: 20px;
   }
   
   .ai-badge {
-    display: none; /* Hide on very small screens */
+    display: none;
   }
 }
 
 /* Extra small screens */
 @media (max-width: 380px) {
-  .chat-container {
-    padding-right: 60px;
-  }
-  
   .whatsapp-contact {
-    min-width: 40px;
-    min-height: 55px;
-    padding: 6px 3px;
+    right: 8px;
+    top: 40%;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
   }
   
   .whatsapp-contact svg {
-    font-size: 16px;
-  }
-  
-  .whatsapp-text {
-    font-size: 0.6rem;
+    font-size: 18px;
   }
 }
 
 /* Landscape orientation adjustments */
 @media (max-width: 768px) and (orientation: landscape) {
   .whatsapp-contact {
-    min-height: 60px;
+    top: 45%;
+    right: 15px;
   }
 }
 
