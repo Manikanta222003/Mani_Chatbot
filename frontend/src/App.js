@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./App.css";
-import { FaWhatsapp, FaPaperPlane, FaRobot, FaUser } from "react-icons/fa";
+import { FaWhatsapp, FaPaperPlane, FaRobot, FaUser, FaComments } from "react-icons/fa";
 
 function App() {
   const [question, setQuestion] = useState("");
@@ -11,6 +11,7 @@ function App() {
   const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
   const BACKEND_URL = "https://mani-chatbot.onrender.com";
+
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -46,7 +47,7 @@ function App() {
         ]);
         callback();
       }
-    }, 150);
+    }, 120); // Slightly faster typing for better UX
   };
 
   const handleAsk = async () => {
@@ -60,7 +61,7 @@ function App() {
     try {
       const response = await axios.post(`${BACKEND_URL}/chat`, {
         question: userQuestion,
-    });
+      });
 
       const botAnswer = response.data.answer || "Hmm... I'll get back to you on that!";
       
@@ -69,12 +70,12 @@ function App() {
       
       setTimeout(() => {
         typeMessage(botAnswer, () => setLoading(false));
-      }, 500);
+      }, 300);
       
     } catch (error) {
       setChatHistory((prev) => [
         ...prev,
-        { type: "bot", text: "Oops! Something went wrong. Try again later." },
+        { type: "bot", text: "I'm experiencing some technical difficulties. Please try again in a moment." },
       ]);
       setLoading(false);
     }
@@ -89,32 +90,32 @@ function App() {
 
   return (
     <div className="chat-app">
-      {/* Animated Background */}
+      {/* Enhanced Animated Background */}
       <div className="gradient-bg">
         <div className="orb orb1"></div>
         <div className="orb orb2"></div>
         <div className="orb orb3"></div>
         <div className="particles">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <div key={i} className={`particle particle-${i + 1}`}></div>
           ))}
         </div>
       </div>
 
-      {/* Header */}
+      {/* Professional Header */}
       <div className="chat-header">
         <div className="header-content">
           <div className="avatar-container">
             <div className="avatar">
-              <FaRobot />
+              <FaComments />
             </div>
             <div className="status-indicator"></div>
           </div>
           <div className="header-text">
             <h1 className="title">
-              Meet <span className="gradient-text">Manikant AI</span>
+              <span className="gradient-text">Manikanta AI</span>
             </h1>
-            <p className="subtitle">Your Intelligent Assistant</p>
+            <p className="subtitle">Your Professional Assistant</p>
           </div>
         </div>
       </div>
@@ -125,21 +126,29 @@ function App() {
           {chatHistory.length === 0 && (
             <div className="welcome-message">
               <div className="welcome-content">
-                <FaRobot className="welcome-icon" />
-                <h3>Welcome! 👋</h3>
-                <p>Ask me anything and I'll help you out!</p>
+                <div className="welcome-icon-wrapper">
+                  <FaComments className="welcome-icon" />
+                </div>
+                <h3>Welcome to Manikanta AI! 👋</h3>
+                <p>I'm here to assist you with any questions or tasks you have.</p>
                 <div className="suggested-questions">
                   <button 
                     className="suggestion-chip"
-                    onClick={() => setQuestion("Tell me about yourself")}
+                    onClick={() => setQuestion("What services do you offer?")}
                   >
-                    Tell me about yourself
+                    What services do you offer?
                   </button>
                   <button 
                     className="suggestion-chip"
-                    onClick={() => setQuestion("What can you help me with?")}
+                    onClick={() => setQuestion("Tell me about your expertise")}
                   >
-                    What can you help me with?
+                    Tell me about your expertise
+                  </button>
+                  <button 
+                    className="suggestion-chip"
+                    onClick={() => setQuestion("How can you help me?")}
+                  >
+                    How can you help me?
                   </button>
                 </div>
               </div>
@@ -152,7 +161,7 @@ function App() {
               className={`message-wrapper ${chat.type}`}
             >
               <div className="message-avatar">
-                {chat.type === "user" ? <FaUser /> : <FaRobot />}
+                {chat.type === "user" ? <FaUser /> : <FaComments />}
               </div>
               <div className={`chat-bubble ${chat.type} ${chat.isTyping ? 'typing-active' : ''}`}>
                 {chat.isHtml ? (
@@ -168,7 +177,7 @@ function App() {
           {loading && !isTyping && (
             <div className="message-wrapper bot">
               <div className="message-avatar">
-                <FaRobot />
+                <FaComments />
               </div>
               <div className="chat-bubble bot typing-indicator">
                 <div className="typing-dots">
@@ -176,13 +185,14 @@ function App() {
                   <span></span>
                   <span></span>
                 </div>
+                <span className="typing-text">Manikanta is thinking...</span>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Input Container */}
+      {/* Enhanced Input Container */}
       <div className="input-container">
         <div className="input-wrapper">
           <textarea
@@ -190,7 +200,7 @@ function App() {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type your message..."
+            placeholder="Type your message here..."
             rows="1"
             disabled={loading}
           />
@@ -198,26 +208,26 @@ function App() {
             onClick={handleAsk} 
             disabled={loading || !question.trim()}
             className="send-button"
+            title="Send message"
           >
             <FaPaperPlane />
           </button>
         </div>
       </div>
 
-      {/* WhatsApp Contact Button */}
+      {/* Fixed WhatsApp Contact Button - Mobile Optimized */}
       <a
-        href="https://wa.me/917816013123"
+        href="https://wa.me/917816013123?text=Hi%20Manikanta!%20I%20came%20from%20your%20AI%20chatbot."
         target="_blank"
         rel="noopener noreferrer"
-        className="whatsapp-btn"
-        title="Chat with Manikanta on WhatsApp"
+        className="whatsapp-contact"
+        title="Contact Manikanta on WhatsApp"
       >
         <FaWhatsapp />
-        <span>Contact</span>
       </a>
 
-      {/* Floating Action Hint */}
-      <div className="floating-hint">
+      {/* Professional AI Badge */}
+      <div className="ai-badge">
         <span>✨ Powered by AI</span>
       </div>
     </div>
