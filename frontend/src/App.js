@@ -47,7 +47,7 @@ function App() {
         ]);
         callback();
       }
-    }, 120); // Slightly faster typing for better UX
+    }, 120);
   };
 
   const handleAsk = async () => {
@@ -65,7 +65,6 @@ function App() {
 
       const botAnswer = response.data.answer || "Hmm... I'll get back to you on that!";
       
-      // Add empty bot message for typing effect
       setChatHistory(prev => [...prev, { type: "bot", text: "", isHtml: true, isTyping: true }]);
       
       setTimeout(() => {
@@ -185,7 +184,7 @@ function App() {
                   <span></span>
                   <span></span>
                 </div>
-                <span className="typing-text">Manikanta is thinking...</span>
+                <span className="typing-text">Bot is thinking...</span>
               </div>
             </div>
           )}
@@ -215,7 +214,7 @@ function App() {
         </div>
       </div>
 
-      {/* Fixed WhatsApp Contact Button - Mobile Optimized */}
+      {/* WhatsApp Contact Button - Fixed Position */}
       <a
         href="https://wa.me/917816013123?text=Hi%20Manikanta!%20I%20came%20from%20your%20AI%20chatbot."
         target="_blank"
@@ -224,6 +223,7 @@ function App() {
         title="Contact Manikanta on WhatsApp"
       >
         <FaWhatsapp />
+        <span className="whatsapp-text">Contact</span>
       </a>
 
       {/* Professional AI Badge */}
