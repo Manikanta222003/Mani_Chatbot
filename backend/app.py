@@ -7,8 +7,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app) 
 # ---- Load files ----
-vectorizer = joblib.load("Mani_vectorizer1.pkl")
-qa_data = joblib.load("Mani_qa_dataset1.pkl")  # DataFrame with 'Question' and 'Answer' columns
+vectorizer = joblib.load("Mani_qa_dataset_up.pkl")
+qa_data = joblib.load("Mani_qa_dataset_up.pkl")  # DataFrame with 'Question' and 'Answer' columns
 
 # ---- Demo Test (optional) ----
 demo_question = "What is your company name?"
